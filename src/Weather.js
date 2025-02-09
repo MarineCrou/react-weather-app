@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 
 export default function Weather() {
   let [city, setCity] = useState(null);
@@ -9,7 +10,19 @@ export default function Weather() {
     const searchedValue = event.target.value;
     setCity(searchedValue);
   };
-  const submittedValue = () => {};
+
+  const fetchWeather = (response) => {
+    console.log(response);
+  };
+
+  const submittedValue = (event) => {
+    event.preventDefault();
+
+    // get city weather info from API OpenWeather
+    const apiKey = "875216e64e4abd111e8dd3c5f75dc098";
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(fetchWeather);
+  };
 
   return (
     <div className="Weather">

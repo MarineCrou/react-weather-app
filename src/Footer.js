@@ -19,7 +19,7 @@ export default function Footer() {
       </a>{" "}
       & hosted on{" "}
       <a
-        href="https://github.com/MarineCrou/react-weather-app"
+        href="https://weather-app-react-test-1.netlify.app/"
         target="_blank"
         rel="noopener noreferrer"
       >
