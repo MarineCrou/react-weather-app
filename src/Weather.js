@@ -1,15 +1,31 @@
-// 1.1 create form
-// 1.2 get value searched by end-user
+import { useState } from "react";
+
 export default function Weather() {
+  let [city, setCity] = useState(null);
+
+  // 1.2 get value searched by end-user
+  const getValueTyped = (event) => {
+    console.log();
+    const searchedValue = event.target.value;
+    setCity(searchedValue);
+  };
+  const submittedValue = () => {};
+
   return (
     <div className="Weather">
+      {/* 1.1 create form */}
       <form>
-        <input type="search" placeholder="Type a city" />
-        <input type="submit" />
+        <input
+          type="search"
+          placeholder="Type a city"
+          onChange={getValueTyped}
+        />
+        <input type="submit" onSubmit={submittedValue} />
       </form>
       {/* Current Weather */}
       <div>
-        <p>City Name</p>
+        <p>{city}</p>
+        {/* 1.3 Get current Day & Time */}
         <p>Day Time, Weather Condition</p>
         <p>Humidity: 89%, Wind: 1.54km/h</p>
       </div>
