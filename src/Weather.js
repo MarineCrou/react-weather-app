@@ -33,7 +33,7 @@ export default function Weather() {
           placeholder="Type a city"
           onChange={getValueTyped}
         />
-        <input type="submit" onSubmit={submittedValue} />
+        <input type="submit" onClick={submittedValue} />
       </form>
       {/* Current Weather */}
       <div>
