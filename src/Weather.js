@@ -1,8 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
+import Date from "./Date";
 
 export default function Weather() {
   let [city, setCity] = useState(null);
+  let [currentWeather, setCurrentWeather] = useState({});
 
   // 1.2 get value searched by end-user
   const getValueTyped = (event) => {
@@ -12,7 +14,14 @@ export default function Weather() {
   };
 
   const fetchWeather = (response) => {
-    console.log(response);
+    console.log(response.data);
+    let weather = {
+      weatherCondition: response.data.weather[0].description,
+      currentTemp: Math.round(response.data.main.temp),
+      humidity: Math.round(response.data.main.humidity),
+      wind: Math.round(response.data.wind.speed),
+    };
+    setCurrentWeather(weather);
   };
 
   const submittedValue = (event) => {
@@ -39,12 +48,17 @@ export default function Weather() {
       <div>
         <p>{city}</p>
         {/* 1.3 Get current Day & Time */}
-        <p>Day Time, Weather Condition</p>
-        <p>Humidity: 89%, Wind: 1.54km/h</p>
+        <p>
+          <Date />, {currentWeather.weatherCondition}
+        </p>
+        <p>
+          Humidity: {currentWeather.humidity}%, Wind: {currentWeather.wind}
+          km/h
+        </p>
       </div>
       <div>
-        <p>icon ☀️</p>
-        <p>Temp °C</p>
+        <p>{currentWeather.icon}☀️</p>
+        <p>{currentWeather.currentTemp} °C</p>
       </div>
       {/* Forecast */}
       <div>
