@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
-import Date from "./DateTime";
+import Geolocation from "./Geolocation";
+import DateTime from "./DateTime";
 
 export default function Weather() {
   let [city, setCity] = useState(null);
@@ -50,7 +51,7 @@ export default function Weather() {
           <div>
             <p>{city}</p>
             <p>
-              <Date />, {currentWeather.weatherCondition}
+              <DateTime />, {currentWeather.weatherCondition}
             </p>
             <p>
               Humidity: {currentWeather.humidity}%, Wind: {currentWeather.wind}
@@ -67,24 +68,7 @@ export default function Weather() {
           </div>
         </div>
       ) : (
-        <div>
-          <div>
-            <p>Paris</p>
-            {/* 1.3 Get current Day & Time */}
-            <p>
-              <Date />, Overcast of clouds
-            </p>
-            <p>Humidity: 74%, Wind: 12% km/h</p>
-          </div>
-          <div>
-            <p>☀️</p>
-            <p>12°C</p>
-          </div>
-          {/* Forecast */}
-          <div>
-            <p>Forecast</p>
-          </div>{" "}
-        </div>
+        <Geolocation />
       )}
     </div>
   );
