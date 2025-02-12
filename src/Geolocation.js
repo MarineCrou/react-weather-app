@@ -11,7 +11,7 @@ export default function Geolocation() {
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(success, error);
-  }, []);
+  }, [position]);
 
   const getGeolocationWeather = (response) => {
     let weather = {
@@ -59,10 +59,7 @@ export default function Geolocation() {
           </div>
           {/* Forecast */}
           <div>
-            <Forecast
-              latitude={position.latitude}
-              longitude={position.longitude}
-            />
+            <Forecast city={geolocWeather.city} />
           </div>
         </div>
       ) : (

@@ -1,21 +1,67 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function Forecast({ latitude, longitude }) {
+export default function Forecast({ city }) {
   const [forecastData, setForecastData] = useState({});
 
-  const getForecast = (response) => {
-    console.log(response);
+  useEffect(() => {
+    if (city) {
+      callApi(success, error);
+    }
+  }, [city]);
+
+  let success = (response) => {
+    const allForecasts = response.data.list;
+    const nineAmDate = allForecasts.filter((hour) => {
+      return hour.dt_txt.includes("09:00:00");
+    });
+    console.log(nineAmDate);
+
+    let daysOfTheWeek = nineAmDate.map((index) => {
+      const unixSeconds = index.dt;
+      const date = new Date(unixSeconds * 1000);
+      const dayOfWeek = date.toLocaleDateString("en-US", {
+        weekday: "short",
+      });
+      return dayOfWeek;
+    });
+
+    let temperature = nineAmDate.map((index) => {
+      const temp = Math.round(index.main.temp_max);
+      return temp;
+    });
+
+    let weather = {
+      temp: temperature,
+      weekDay: daysOfTheWeek,
+    };
+    setForecastData(weather);
+    console.log(weather);
+    console.log(forecastData);
+  };
+
+  let error = () => {
+    console.log(`Could not retrieve city`);
   };
 
   const callApi = () => {
-    console.log(`lat: ${latitude}, lon: ${longitude}`);
-    const apiKey = "875216e64e4abd111e8dd3c5f75dc098";
+    console.log(`city: ${city}`);
+    const apiKey = "515c9ddbeb3cda9061acfab71031839e";
     const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(forecastUrl).then(getForecast);
+    axios.get(forecastUrl).then(success);
   };
-  callApi();
-  // return 5 days
 
-  return <div>"hello"</div>;
+  return (
+    <div>
+      {forecastData.temp && forecastData.weekDay ? (
+        forecastData.weekDay.map((day, index) => (
+          <p key={index}>
+            {day}: {forecastData.temp[index]}°C
+          </p>
+        ))
+      ) : (
+        <p>Loading forecast...</p>
+      )}
+    </div>
+  );
 }
