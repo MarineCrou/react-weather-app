@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 
 import DateTime from "./DateTime";
-import Forecast from "./css/Forecast";
+import Forecast from "./Forecast";
+import WeatherIcons from "./WeatherIcons";
 
 export default function Geolocation() {
   const [position, setPosition] = useState(null);
@@ -17,6 +18,7 @@ export default function Geolocation() {
     let weather = {
       city: response.data.name,
       weatherCondition: response.data.weather[0].description,
+      weatherIconDescription: response.data.weather[0].main,
       currentTemp: Math.round(response.data.main.temp),
       humidity: Math.round(response.data.main.humidity),
       wind: Math.round(response.data.wind.speed),
@@ -59,7 +61,9 @@ export default function Geolocation() {
             </ul>
           </div>
           <div className="temperature-container d-flex justify-content-end">
-            <i className="wi wi-day-lightning"></i>
+            <p className="weather-icon-current">
+              <WeatherIcons icon={geolocWeather.weatherIconDescription} />
+            </p>
             <div>
               <span className="temperature">{geolocWeather.currentTemp}</span>
               <span className="unit">°C</span>

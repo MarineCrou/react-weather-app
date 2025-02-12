@@ -3,7 +3,8 @@ import axios from "axios";
 
 import Geolocation from "./Geolocation";
 import DateTime from "./DateTime";
-import Forecast from "./css/Forecast";
+import Forecast from "./Forecast";
+import WeatherIcons from "./WeatherIcons";
 
 export default function Weather() {
   const [city, setCity] = useState(null);
@@ -30,6 +31,7 @@ export default function Weather() {
     console.log(response.data);
     let weather = {
       weatherCondition: response.data.weather[0].description,
+      weatherIconDescription: response.data.weather[0].main,
       currentTemp: Math.round(response.data.main.temp),
       humidity: Math.round(response.data.main.humidity),
       wind: Math.round(response.data.wind.speed),
@@ -75,7 +77,10 @@ export default function Weather() {
               </ul>
             </div>
             <div className="temperature-container">
-              <p>☀️</p>
+              <p className="weather-icon-current">
+                <WeatherIcons icon={currentWeather.weatherIconDescription} />
+              </p>
+
               <div>
                 <span className="temperature">
                   {currentWeather.currentTemp}

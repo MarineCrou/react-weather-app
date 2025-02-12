@@ -74,3 +74,11 @@ li strong {
   color: #f65282;
   font-weight: normal;
 }
+
+.weather-icon-current {
+  font-size: 80px;
+}
+
+.WeatherIcons {
+  text-align: center;
+}

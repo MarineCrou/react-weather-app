@@ -15,7 +15,6 @@ export default function Forecast({ city }) {
     const nineAmDate = allForecasts.filter((hour) => {
       return hour.dt_txt.includes("09:00:00");
     });
-    console.log(nineAmDate);
 
     let daysOfTheWeek = nineAmDate.map((index) => {
       const unixSeconds = index.dt;
@@ -36,8 +35,6 @@ export default function Forecast({ city }) {
       weekDay: daysOfTheWeek,
     };
     setForecastData(weather);
-    console.log(weather);
-    console.log(forecastData);
   };
 
   let error = () => {
@@ -45,7 +42,6 @@ export default function Forecast({ city }) {
   };
 
   const callApi = () => {
-    console.log(`city: ${city}`);
     const apiKey = "515c9ddbeb3cda9061acfab71031839e";
     const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(forecastUrl).then(success);
