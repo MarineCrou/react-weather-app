@@ -1,6 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { ThreeDots } from "react-loader-spinner";
+
 import DateTime from "./DateTime";
+import Forecast from "./css/Forecast";
 
 export default function Geolocation() {
   const [position, setPosition] = useState(null);
@@ -24,12 +27,10 @@ export default function Geolocation() {
   const success = (position) => {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
-    console.log(longitude, latitude);
     setPosition({ latitude, longitude });
 
     const apiKey = "875216e64e4abd111e8dd3c5f75dc098";
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
-    // https://api.openweathermap.org/data/2.5/weather?lat=46.1616173&lon=-1.1697472&appid=875216e64e4abd111e8dd3c5f75dc098&units=metric
     axios.get(apiUrl).then(getGeolocationWeather);
   };
 
@@ -58,11 +59,27 @@ export default function Geolocation() {
           </div>
           {/* Forecast */}
           <div>
-            <p>Forecast</p>
+            <Forecast
+              latitude={position.latitude}
+              longitude={position.longitude}
+            />
           </div>
         </div>
       ) : (
-        <p>Getting your location...</p>
+        <div>
+          {" "}
+          <ThreeDots
+            visible={true}
+            height="60"
+            width="60"
+            color="#410099"
+            radius="9"
+            ariaLabel="three-dots-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+          />
+          <p>Getting your location...</p>
+        </div>
       )}
     </div>
   );
