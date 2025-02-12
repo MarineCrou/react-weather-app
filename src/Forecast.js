@@ -76,3 +76,66 @@ export default function Forecast({ city }) {
     </div>
   );
 }
+
+// ? DRY VERSION
+// import axios from "axios";
+// import { useEffect, useState } from "react";
+
+// import "./css/Forecast.css";
+// import WeatherIcons from "./WeatherIcons";
+
+// export default function Forecast({ city }) {
+//   const [forecastData, setForecastData] = useState({});
+
+//   useEffect(() => {
+//     if (city) {
+//       callApi();
+//     }
+//   }, [city]);
+
+//   let getForecast = (response) => {
+//     console.log(response.data);
+
+//     const allForecasts = response.data.list;
+//     const nineAmData = allForecasts.filter((hour) =>
+//       hour.dt_txt.includes("09:00:00")
+//     );
+
+//     const dailyForecast = nineAmData.map((item) => {
+//       const date = new Date(item.dt * 1000);
+//       const dayOfWeek = date.toLocaleDateString("en-US", { weekday: "short" });
+//       return {
+//         day: dayOfWeek,
+//         temp: Math.round(item.main.temp_max),
+//         icon: item.weather[0].main,
+//       };
+//     });
+
+//     setForecastData(dailyForecast);
+//   };
+
+//   const callApi = () => {
+//     const apiKey = "515c9ddbeb3cda9061acfab71031839e";
+//     const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+//     axios.get(forecastUrl).then(getForecast);
+//   };
+//   console.log(forecastData.icon);
+
+//   return (
+//     <div className="Forecast">
+//       {forecastData.length > 0 ? (
+//         forecastData.map((forecastItem, index) => (
+//           <ul key={index}>
+//             <li className="forecast-time">{forecastItem.day}</li>
+//             <li className="weather-icon">
+//               <WeatherIcons icon={forecastItem.icon} />
+//             </li>
+//             <li className="forecast-temperature">{forecastItem.temp}°C</li>
+//           </ul>
+//         ))
+//       ) : (
+//         <p>Loading forecast...</p>
+//       )}
+//     </div>
+//   );
+// }
