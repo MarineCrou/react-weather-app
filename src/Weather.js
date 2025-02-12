@@ -1,7 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
+import { ThreeDots } from "react-loader-spinner";
+
 import Geolocation from "./Geolocation";
 import DateTime from "./DateTime";
+import Forecast from "./css/Forecast";
 
 export default function Weather() {
   let [city, setCity] = useState(null);
@@ -62,13 +65,14 @@ export default function Weather() {
             <p>{currentWeather.icon}☀️</p>
             <p>{currentWeather.currentTemp} °C</p>
           </div>
-          {/* Forecast */}
           <div>
-            <p>Forecast</p>
+            <Forecast city={city} />
           </div>
         </div>
       ) : (
-        <Geolocation />
+        <div>
+          <Geolocation />
+        </div>
       )}
     </div>
   );
