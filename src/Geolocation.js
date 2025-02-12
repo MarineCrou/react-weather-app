@@ -44,18 +44,26 @@ export default function Geolocation() {
       {position ? (
         <div>
           <div>
-            <p>{geolocWeather.city}</p>
-            <p>
-              <DateTime />, {geolocWeather.weatherCondition}
-            </p>
-            <p>
-              Humidity: {geolocWeather.humidity}%, Wind: {geolocWeather.wind}
-              km/h
-            </p>
+            <h1>{geolocWeather.city}</h1>
+            <ul>
+              <li>
+                <span>
+                  <DateTime />
+                </span>
+                , {geolocWeather.weatherCondition}
+              </li>
+              <li>
+                Humidity: <strong>{geolocWeather.humidity}%</strong>, Wind:{" "}
+                <strong>{geolocWeather.wind} km/h</strong>
+              </li>
+            </ul>
           </div>
-          <div>
-            <p>{geolocWeather.icon}☀️</p>
-            <p>{geolocWeather.currentTemp} °C</p>
+          <div className="temperature-container d-flex justify-content-end">
+            <i className="wi wi-day-lightning"></i>
+            <div>
+              <span className="temperature">{geolocWeather.currentTemp}</span>
+              <span className="unit">°C</span>
+            </div>
           </div>
           {/* Forecast */}
           <div>
