@@ -7,7 +7,7 @@ export default function WeatherIcons({ icon }) {
       iconSelection();
       console.log(weatherIcon);
     }
-  }, []);
+  }, [icon]);
 
   //   need to go through the weather icons to display the icon that matches the descriptions
   const iconSelection = () => {

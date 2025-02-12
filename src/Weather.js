@@ -41,7 +41,7 @@ export default function Weather() {
 
   const submittedValue = (event) => {
     event.preventDefault();
-    const apiKey = "875216e64e4abd111e8dd3c5f75dc098";
+    const apiKey = "5da7b2dc058f07286fea39c4cee516a3";
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(fetchWeather);
   };
@@ -62,7 +62,7 @@ export default function Weather() {
         <div className="main-container">
           <div className="current-weather-container">
             <div>
-              <h1>{city}</h1>
+              <h1>{city.toUpperCase()}</h1>
               <ul>
                 <li>
                   <span>
@@ -77,11 +77,11 @@ export default function Weather() {
               </ul>
             </div>
             <div className="temperature-container">
-              <p className="weather-icon-current">
+              <div className="weather-icon-current">
                 <WeatherIcons icon={currentWeather.weatherIconDescription} />
-              </p>
+              </div>
 
-              <div>
+              <div className="inner-temp-container">
                 <span className="temperature">
                   {currentWeather.currentTemp}
                 </span>

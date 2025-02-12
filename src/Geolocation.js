@@ -44,32 +44,34 @@ export default function Geolocation() {
   return (
     <div>
       {position ? (
-        <div>
-          <div>
-            <h1>{geolocWeather.city}</h1>
-            <ul>
-              <li>
-                <span>
-                  <DateTime />
-                </span>
-                , {geolocWeather.weatherCondition}
-              </li>
-              <li>
-                Humidity: <strong>{geolocWeather.humidity}%</strong>, Wind:{" "}
-                <strong>{geolocWeather.wind} km/h</strong>
-              </li>
-            </ul>
-          </div>
-          <div className="temperature-container d-flex justify-content-end">
-            <p className="weather-icon-current">
-              <WeatherIcons icon={geolocWeather.weatherIconDescription} />
-            </p>
+        <div className="main-container">
+          <div className="current-weather-container">
             <div>
-              <span className="temperature">{geolocWeather.currentTemp}</span>
-              <span className="unit">°C</span>
+              <h1>{geolocWeather.city}</h1>
+              <ul>
+                <li>
+                  <span>
+                    <DateTime />
+                  </span>
+                  , {geolocWeather.weatherCondition}
+                </li>
+                <li>
+                  Humidity: <strong>{geolocWeather.humidity}%</strong>, Wind:{" "}
+                  <strong>{geolocWeather.wind} km/h</strong>
+                </li>
+              </ul>
+            </div>
+            <div className="temperature-container">
+              <div className="weather-icon-current">
+                <WeatherIcons icon={geolocWeather.weatherIconDescription} />
+              </div>
+
+              <div className="inner-temp-container">
+                <span className="temperature">{geolocWeather.currentTemp}</span>
+                <span className="unit">°C</span>
+              </div>
             </div>
           </div>
-          {/* Forecast */}
           <div>
             <Forecast city={geolocWeather.city} />
           </div>
