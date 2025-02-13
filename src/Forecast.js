@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 import "./css/Forecast.css";
+
 import WeatherIcons from "./WeatherIcons";
 
 export default function Forecast({ city }) {

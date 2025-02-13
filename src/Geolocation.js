@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 
+
 import DateTime from "./DateTime";
 import Forecast from "./Forecast";
 import WeatherIcons from "./WeatherIcons";
@@ -42,7 +43,7 @@ export default function Geolocation() {
   };
 
   return (
-    <div>
+    <div >
       {position ? (
         <div className="main-container">
           <div className="current-weather-container">

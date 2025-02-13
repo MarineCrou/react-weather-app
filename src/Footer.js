@@ -1,6 +1,8 @@
+import "./css/Footer.css";
+
 export default function Footer() {
   return (
-    <p>
+    <p className="Footer">
       This project was coded by{" "}
       <a
         href="https://marine.crouzet.com"
