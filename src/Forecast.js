@@ -8,8 +8,6 @@ import WeatherIcons from "./WeatherIcons";
 export default function Forecast({ city }) {
   const [forecastData, setForecastData] = useState({});
 
-  console.log(forecastData.icon);
-
   useEffect(() => {
     if (city) {
       const callApi = () => {
@@ -45,7 +43,6 @@ export default function Forecast({ city }) {
 
     let weatherIcon = nineAmData.map((item) => {
       const mainDescription = item.weather[0].main;
-      console.log(mainDescription);
       return mainDescription;
     });
 

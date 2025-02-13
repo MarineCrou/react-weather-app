@@ -4,6 +4,7 @@ import { ThreeDots } from "react-loader-spinner";
 
 import DateTime from "./DateTime";
 import Forecast from "./Forecast";
+import Units from "./Units";
 import WeatherIcons from "./WeatherIcons";
 
 export default function Geolocation() {
@@ -67,8 +68,7 @@ export default function Geolocation() {
               </div>
 
               <div className="inner-temp-container">
-                <span className="temperature">{geolocWeather.currentTemp}</span>
-                <span className="unit">°C</span>
+                <Units unitTemp={geolocWeather.currentTemp} />
               </div>
             </div>
           </div>

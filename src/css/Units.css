@@ -1,0 +1,18 @@
+.unit {
+  color: #f65282;
+  font-size: 28px;
+  line-height: 36px;
+  font-weight: normal;
+  position: relative;
+  line-height: 1;
+  top: -34px;
+  text-decoration: none;
+}
+
+.WeatherIcons {
+  text-align: center;
+}
+
+.unit .inactive {
+  color: #f39ab5;
+}

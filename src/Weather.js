@@ -5,6 +5,7 @@ import Geolocation from "./Geolocation";
 import DateTime from "./DateTime";
 import Forecast from "./Forecast";
 import WeatherIcons from "./WeatherIcons";
+import Units from "./Units";
 
 export default function Weather() {
   const [city, setCity] = useState(null);
@@ -22,14 +23,12 @@ export default function Weather() {
 
   const getValueTyped = (event) => {
     setCityData(false);
-    console.log();
     const searchedValue = event.target.value;
     setCity(searchedValue);
   };
 
   const fetchWeather = (response) => {
     setCityData(true);
-    console.log(response.data);
     let weather = {
       weatherCondition: response.data.weather[0].description,
       weatherIconDescription: response.data.weather[0].main,
@@ -83,10 +82,7 @@ export default function Weather() {
               </div>
 
               <div className="inner-temp-container">
-                <span className="temperature">
-                  {currentWeather.currentTemp}
-                </span>
-                <span className="unit">°C</span>
+                <Units unitTemp={currentWeather.currentTemp} />
               </div>
             </div>
           </div>

@@ -22,7 +22,6 @@ export default function WeatherIcons({ icon }) {
       };
       const matchWeatherIcon = weatherGifs[icon] || "🌤️";
       setWeatherIcon(matchWeatherIcon);
-      console.log(weatherIcon);
     }
   }, [icon, weatherIcon]);
 
