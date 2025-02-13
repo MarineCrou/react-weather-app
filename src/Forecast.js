@@ -7,8 +7,15 @@ import WeatherIcons from "./WeatherIcons";
 export default function Forecast({ city }) {
   const [forecastData, setForecastData] = useState({});
 
+  console.log(forecastData.icon);
+
   useEffect(() => {
     if (city) {
+      const callApi = () => {
+        const apiKey = "515c9ddbeb3cda9061acfab71031839e";
+        const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+        axios.get(forecastUrl).then(getForecast);
+      };
       callApi();
     }
   }, [city]);
@@ -48,13 +55,6 @@ export default function Forecast({ city }) {
     };
     setForecastData(weather);
   };
-
-  const callApi = () => {
-    const apiKey = "515c9ddbeb3cda9061acfab71031839e";
-    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(forecastUrl).then(getForecast);
-  };
-  console.log(forecastData.icon);
 
   return (
     <div className="Forecast">

@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 
 export default function WeatherIcons({ icon }) {
   let [weatherIcon, setWeatherIcon] = useState("");
+  
   useEffect(() => {
     if (icon) {
       iconSelection();
       console.log(weatherIcon);
     }
-  }, [icon]);
+  }, []);
 
-  //   need to go through the weather icons to display the icon that matches the descriptions
   const iconSelection = () => {
     const icons = {
       Clear: "☀️",
