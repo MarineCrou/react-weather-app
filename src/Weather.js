@@ -10,6 +10,7 @@ export default function Weather() {
   const [city, setCity] = useState(null);
   const [currentWeather, setCurrentWeather] = useState({});
   const [cityData, setCityData] = useState(false);
+
   //   const [units, setUnits] = useState("metric");
   //   const [metric, setMetric] = useState(true);
 

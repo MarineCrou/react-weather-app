@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 
-
 import DateTime from "./DateTime";
 import Forecast from "./Forecast";
 import WeatherIcons from "./WeatherIcons";
@@ -10,10 +9,6 @@ import WeatherIcons from "./WeatherIcons";
 export default function Geolocation() {
   const [position, setPosition] = useState(null);
   const [geolocWeather, setGeolocWeather] = useState({});
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(success, error);
-  }, [position]);
 
   const getGeolocationWeather = (response) => {
     let weather = {
@@ -27,23 +22,27 @@ export default function Geolocation() {
     setGeolocWeather(weather);
   };
 
-  const success = (position) => {
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
-    setPosition({ latitude, longitude });
+  useEffect(() => {
+    const success = (position) => {
+      const latitude = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      setPosition({ latitude, longitude });
 
-    const apiKey = "875216e64e4abd111e8dd3c5f75dc098";
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(getGeolocationWeather);
-  };
+      const apiKey = "875216e64e4abd111e8dd3c5f75dc098";
+      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+      axios.get(apiUrl).then(getGeolocationWeather);
+    };
 
-  const error = () => {
-    console.error("Error getting geolocation");
-    return "We could not retieve your geolocation";
-  };
+    const error = () => {
+      console.error("Error getting geolocation");
+      return "We could not retieve your geolocation";
+    };
+
+    navigator.geolocation.getCurrentPosition(success, error);
+  }, [position]);
 
   return (
-    <div >
+    <div>
       {position ? (
         <div className="main-container">
           <div className="current-weather-container">
