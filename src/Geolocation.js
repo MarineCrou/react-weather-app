@@ -42,23 +42,76 @@ export default function Geolocation() {
     navigator.geolocation.getCurrentPosition(success, error);
   }, [position]);
 
-  return (
-    <div>
-      {position ? (
+  if (position) {
+    return (
+      <div>
+        {position ? (
+          <div className="main-container">
+            <div className="current-weather-container">
+              <div>
+                <h1>{geolocWeather.city}</h1>
+                <ul>
+                  <li>
+                    <span>
+                      <DateTime />
+                    </span>
+                    , {geolocWeather.weatherCondition}
+                  </li>
+                  <li>
+                    Humidity: <strong>{geolocWeather.humidity}%</strong>, Wind:{" "}
+                    <strong>{geolocWeather.wind} km/h</strong>
+                  </li>
+                </ul>
+              </div>
+              <div className="temperature-container">
+                <div className="weather-icon-current">
+                  <WeatherIcons icon={geolocWeather.weatherIconDescription} />
+                </div>
+
+                <div className="inner-temp-container">
+                  <Units metric={geolocWeather.currentTemp} />
+                </div>
+              </div>
+            </div>
+            <div>
+              <Forecast city={geolocWeather.city} />
+            </div>
+          </div>
+        ) : (
+          <div>
+            {" "}
+            <ThreeDots
+              visible={true}
+              height="60"
+              width="60"
+              color="#410099"
+              radius="9"
+              ariaLabel="three-dots-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+            />
+            <p>Getting your location...</p>
+          </div>
+        )}
+      </div>
+    );
+  } else {
+    return (
+      <div>
         <div className="main-container">
           <div className="current-weather-container">
             <div>
-              <h1>{geolocWeather.city}</h1>
+              <h1>London</h1>
               <ul>
                 <li>
                   <span>
                     <DateTime />
                   </span>
-                  , {geolocWeather.weatherCondition}
+                  , Tbd
                 </li>
                 <li>
-                  Humidity: <strong>{geolocWeather.humidity}%</strong>, Wind:{" "}
-                  <strong>{geolocWeather.wind} km/h</strong>
+                  Humidity: <strong> 12%</strong>, Wind:{" "}
+                  <strong>12 km/h</strong>
                 </li>
               </ul>
             </div>
@@ -76,22 +129,7 @@ export default function Geolocation() {
             <Forecast city={geolocWeather.city} />
           </div>
         </div>
-      ) : (
-        <div>
-          {" "}
-          <ThreeDots
-            visible={true}
-            height="60"
-            width="60"
-            color="#410099"
-            radius="9"
-            ariaLabel="three-dots-loading"
-            wrapperStyle={{}}
-            wrapperClass=""
-          />
-          <p>Getting your location...</p>
-        </div>
-      )}
-    </div>
-  );
+      </div>
+    );
+  }
 }

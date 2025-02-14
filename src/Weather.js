@@ -12,15 +12,6 @@ export default function Weather() {
   const [currentWeather, setCurrentWeather] = useState({});
   const [cityData, setCityData] = useState(false);
 
-  //   const [units, setUnits] = useState("metric");
-  //   const [metric, setMetric] = useState(true);
-
-  //   const changeMetric = (event) => {
-  //     event.preventDefault();
-  //     setMetric(false);
-  //     setUnits("farenheight");
-  //   };
-
   const getValueTyped = (event) => {
     setCityData(false);
     const searchedValue = event.target.value;
