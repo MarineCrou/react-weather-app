@@ -68,7 +68,7 @@ export default function Geolocation() {
               </div>
 
               <div className="inner-temp-container">
-                <Units unitTemp={geolocWeather.currentTemp} />
+                <Units metric={geolocWeather.currentTemp} />
               </div>
             </div>
           </div>

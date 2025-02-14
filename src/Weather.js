@@ -82,7 +82,7 @@ export default function Weather() {
               </div>
 
               <div className="inner-temp-container">
-                <Units unitTemp={currentWeather.currentTemp} />
+                <Units metric={currentWeather.currentTemp} />
               </div>
             </div>
           </div>
